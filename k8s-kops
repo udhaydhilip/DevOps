@@ -32,10 +32,10 @@ cluster type :
  CLUSTER STATE STORAGE
 
 In order to store the state of your cluster,the representation of your cluster, we need to create a dedicated S3 bucket for KOPS to use.
-this bucket will become the source of truth for our cluster configuration. In this guide we'll call this bucket awsnaresh, but you should
+this bucket will become the source of truth for our cluster configuration. In this guide we'll call this bucket awsudaya, but you should
 add a custom prefix as bucket names need to be unique.
 
-# aws s3api create-bucket --bucket awsnaresh --region us-east-1
+# aws s3api create-bucket --bucket awsudaya --region us-east-1
 # aws s3api put-bucket-versioning --bucket awsdamo --versioning-configuration status=Enabled
 
 NODES AUTHENTICATION METHODS
@@ -51,12 +51,12 @@ Prepare local environment ( multimaster types)
 We ready to start creating our first cluster! let's first set up a few environment variables to make this 
 process easier.
 
-# export NAME=aws.naresh.com
-# export KOPS_STATE_STORE=s3://awsnaresh
+# export NAME=aws.udaya.com
+# export KOPS_STATE_STORE=s3://awsudaya
 
 for a gossip-based cluster,make sure the name ends with k8s.local.for example
 
-# export NAME=naresh.k8s.local
+# export NAME=udaya.k8s.local
 # export KOPS_STATE_STORE=s3://kops-2703
 
 NOTE:
@@ -68,24 +68,24 @@ you don't have to use environment variable here.you can always define the values
 
 Suggestions:
  * list clusters with: kops get cluster
- * edit this cluster with: kops edit cluster naresh.k8s.local
- * edit your node instance group: kops edit ig --name=naresh.k8s.local nodes-us-east-1a
- * edit your master instance group: kops edit ig --name=naresh.k8s.local master-us-east-1a
+ * edit this cluster with: kops edit cluster udaya.k8s.local
+ * edit your node instance group: kops edit ig --name=udaya.k8s.local nodes-us-east-1a
+ * edit your master instance group: kops edit ig --name=udaya.k8s.local master-us-east-1a
 
-Finally configure your cluster with: kops update cluster --name naresh.k8s.local --yes --admin
+Finally configure your cluster with: kops update cluster --name udaya.k8s.local --yes --admin
 
 
 Suggestions:
  * validate cluster: kops validate cluster --wait 10m
  * list nodes: kubectl get nodes --show-labels
- * ssh to the master: ssh -i ~/.ssh/id_rsa ubuntu@api.naresh.k8s.local
+ * ssh to the master: ssh -i ~/.ssh/id_rsa ubuntu@api.udaya.k8s.local
  * the ubuntu user is specific to Ubuntu. If not using Ubuntu please use the appropriate user based on your OS.
  * read about installing addons at: https://kops.sigs.k8s.io/addons.
 
 
 DELETE A CLUSTER
 
-# kops delete cluster --name=naresh.k8s.local --state=s3://kops2623 --yes
+# kops delete cluster --name=udaya.k8s.local --state=s3://kops2623 --yes
 
 IF CHOOSE MULTIPLE AVAILABILITY ZONES
 
